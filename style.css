@@ -1,0 +1,202 @@
+/* ========================================
+   SMOKE EFFECT (CSS-Only)
+   Creates a floating smoke overlay using ::before and ::after
+   to enhance the vibe of the lounge feel
+======================================== */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 80%);
+  opacity: 0.5;
+  animation: smoke 60s linear infinite;
+  pointer-events: none; /* Prevents it from interfering with clicks */
+  z-index: 1;
+}
+
+body::after {
+  animation-delay: 30s; /* Slight delay to make both layers feel natural */
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 80%);
+  transform: scaleX(-1); /* Mirror effect for more variation */
+}
+
+@keyframes smoke {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-50px) rotate(10deg) scale(1.05);
+  }
+  100% {
+    transform: translateY(-100px) rotate(-10deg) scale(1);
+  }
+}
+
+/* Make sure actual content stays above the smoke effect */
+header, main, .product-section, nav {
+  position: relative;
+  z-index: 2;
+}
+
+/* ========================================
+   GENERAL RESET AND BODY STYLING
+======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #0f0f0f;
+  color: #fff;
+  line-height: 1.6;
+  padding-bottom: 50px; /* Prevent bottom elements from being cut off */
+}
+
+/* ========================================
+   HEADER & HERO SECTION
+======================================== */
+header.hero {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+header.hero h1 {
+  font-size: 3rem;
+  color: #ff3c00; /* Orange-red fire feel */
+}
+
+header.hero p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #ccc;
+}
+
+/* ========================================
+   NAVIGATION LINKS
+======================================== */
+nav {
+  margin-top: 20px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 8px 15px;
+  background: #222;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background: #ff3c00; /* Fire orange on hover */
+}
+
+/* ========================================
+   PRODUCT SECTIONS
+======================================== */
+.product-section {
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.6);
+  margin: 30px 0;
+  border-top: 2px solid #ff3c00;
+}
+
+.product-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  color: #ff3c00;
+}
+
+/* ========================================
+   GRID LAYOUT FOR PRODUCTS
+======================================== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+/* ========================================
+   PRODUCT CARDS
+======================================== */
+.product-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 60, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  margin: 10px;
+  color: #ff9500; /* Bright orange for product titles */
+}
+
+.product-card p {
+  margin: 0 10px 10px;
+  color: #ddd;
+}
+
+/* ========================================
+   WHATSAPP ORDER BUTTONS
+======================================== */
+.whatsapp-btn {
+  display: block;
+  background-color: #25D366; /* Official WhatsApp green */
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.whatsapp-btn:hover {
+  background-color: #1ebe57;
+}
+
+/* ========================================
+   FLOATING WHATSAPP ICON (BOTTOM RIGHT)
+======================================== */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: #fff;
+  font-size: 2rem;
+  padding: 10px 15px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: background 0.3s;
+}
+
+.floating-whatsapp:hover {
+  background-color: #1ebe57;
+}
